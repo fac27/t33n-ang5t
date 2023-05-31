@@ -1,16 +1,16 @@
 module.exports = { signUpForm };
 
 function signUpForm(mode) {
-  const isSignUp = mode === 'sign-up';
+  const isSignUp = mode === "sign-up";
   return /*html*/ `
   <header class="header">
     <div class="header__user-name">
-      ${mode === isSignUp ? 'Sign Up' : 'Sign In'}
+      ${mode === isSignUp ? "Sign Up" : "Sign In"}
     </div>
   </header>
   <main class="main">
     <form
-      action= ${isSignUp ? '/sign-up' : '/log-in'}
+      action= ${isSignUp ? "/sign-up" : "/log-in"}
       method="POST"
       class="submit-form"
     >
@@ -27,7 +27,7 @@ function signUpForm(mode) {
         required
       ></input>
       <button type="submit" class="submit-form__button">
-        ${isSignUp ? 'Sign Up' : 'Log In'}
+        ${isSignUp ? "Sign Up" : "Log In"}
       </button>
     </form>
   </main>

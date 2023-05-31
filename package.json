@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "dev": "DB_FILE=db.sqlite nodemon ./src/index.js",
-    "seed": "DB_FILE=db.sqlite node ./src/database/seed.js"
+    "seed": "DB_FILE=db.sqlite node ./src/database/seed.js",
+    "prettier": "prettier --write \"src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.7",
     "eslint": "^8.41.0",
-    "eslint-config-kentcdodds": "^20.5.0"
+    "eslint-config-kentcdodds": "^20.5.0",
+    "prettier": "^2.8.8"
   }
 }
