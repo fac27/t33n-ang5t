@@ -8,6 +8,7 @@ const entries = require("./routes/entries.js");
 
 const body = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
+server.use(express.static('public'));
 
 const server = express();
 
