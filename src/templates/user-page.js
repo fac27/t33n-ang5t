@@ -1,14 +1,17 @@
-module.exports = { entriesPage }
+module.exports = { entriesPage };
 
 function entriesPage(entries, userId, userName) {
-  const entryList = entries.map(
-    (entry) => /*html*/ `
+  const entryList = entries
+    .map(
+      (entry) => /*html*/ `
     <div class="entry-post">
       <div class="entry-post__header">
         <p> 
           ${entry.posted_at} 
-          <span class="entry-post__header${userId === entry.user_id ? `--user-name` : `--anonymous`}">
-            ${userId === entry.user_id ? userName : "anonymous"}
+          <span class="entry-post__header${
+            userId === entry.user_id ? `--user-name` : `--anonymous`
+          }">
+            ${userId === entry.user_id ? userName : 'anonymous'}
           </span>
       </p>
       </div>
@@ -16,9 +19,10 @@ function entriesPage(entries, userId, userName) {
         ${entry.content}
       </div>
     <div>`
-  ).join("");
-  
-  return /*html*/`
+    )
+    .join('');
+
+  return /*html*/ `
     <header class="header">
       <div class="header__user-name">${userName}</div>
       <button class="header__log-out" type="button">
@@ -45,5 +49,5 @@ function entriesPage(entries, userId, userName) {
       Add entry to your journal
     </button>
     </form>
-  `
+  `;
 }
