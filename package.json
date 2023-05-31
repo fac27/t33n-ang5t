@@ -7,9 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "DB_FILE=db.sqlite COOKIE_SECRET=abc nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server/index.js",
+    "dev": "DB_FILE=db.sqlite nodemon ./src/server/index.js",
+    "seed": "DB_FILE=db.sqlite node ./src/database/seed.js"
   },
   "repository": {
     "type": "git",
