@@ -22,7 +22,7 @@ server.use(cookies);
 //server.get("/log-in", login.get);
 //server.post("/log-in", body, login.post);
 //server.post("/log-out", logout.post);
-//server.get("/entries/:user_id", entries.get);
+server.get("/entries/:user_id", entries.get);
 //server.post("/entries/:user_id", body, entries.post);
 
 module.exports = server;
