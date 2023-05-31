@@ -1,0 +1,66 @@
+body {
+    margin: 0
+}
+
+/* Utility classes - layout */
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Utility classes - flex */
+
+.row {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+/* Header */
+
+.header {
+    padding: 1rem;
+}
+
+.header__user-name {
+    border: solid black 0.1rem;
+}
+
+.header__log-out {
+
+}
+
+/* Entry List */
+
+.entries__display {
+    margin
+}
+
+.entry-post {
+
+}
+
+.entry-post__header {
+
+}
+
+.entry-post__body {
+
+}
+
+/* Form */
+
+.submit-form {
+
+}
+
+.submit-form__content {
+
+}
+
+.submit-form__button {
+
+}
