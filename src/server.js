@@ -5,10 +5,34 @@ const signup = require('./routes/sign-up.js');
 const login = require('./routes/log-in.js');
 const logout = require('./routes/log-out.js');
 const entries = require('./routes/entries.js');
+const { getSession } = require('./model/session.js');
+require('dotenv').config();
+
 const server = express();
+
 const bodyParser = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
 server.use(express.static('public'));
+
+// check session from cookie
+server.use((req, res, next) => {
+  const sessionId = req.signedCookies.sid;
+  const session = getSession(sessionId);
+
+  if (session) {
+    const expiryDate = new Date(session.expires_at);
+    const currentDate = new Date();
+
+    if (currentDate > expiryDate) {
+      removeSession(sid);
+      res.clearCookie('sid');
+    } else {
+      req.session = session;
+    }
+  }
+
+  next();
+});
 
 server.get('/', (req, res) => {
   res.send(`<h1>Hello World</h1>`);
