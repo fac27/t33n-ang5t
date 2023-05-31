@@ -16,7 +16,7 @@ server.use(express.static('public'));
 
 // check session from cookie
 server.use((req, res, next) => {
-  const sessionId = req.signedCookies.sid;
+  const sessionId = req.signedCookies && req.signedCookies.sid;
   const session = getSession(sessionId);
 
   if (session) {
