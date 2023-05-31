@@ -13,14 +13,14 @@ function listEntries() {
 const db = require('../database/db');
 
 // insert dairy entry into the db
-const create_enrty = db.prepare(/*sql*/ `
+const create_entry = db.prepare(/*sql*/ `
     INSERT INTO entries (content, user_id)
     VALUES ($content, $user_id)
     RETURNING entries.id
 `);
 
 const createEntry = (content, user_id) => {
-  return create_enrty.get({ content, user_id });
+  return create_entry.get({ content, user_id });
 };
 
 module.exports = { listEntries, createEntry };
