@@ -1,15 +1,20 @@
-const { listEntries } = require('../model/entries.js');
-const { Layout } = require('../templates.js');
+const { listEntries, createEntry } = require('../model/entries.js');
+const { layout } = require('../templates/layout.js');
+const { entriesPage } = require ('../templates/user-page.js')
 
-function get(res, req) {
+module.exports = { get , post };
+
+function get(req, res) {
   const entries = listEntries();
-  let title = '';
-  let content = '';
-  if (!entries.length) {
-    res.status(404);
-  }
-  const body = Layout({ title, content });
-  res.send(body);
-}
+  const user_id = 1; //fix when authentication is there
+  const user_name = "xxDarkSoulxx";
+  const body = entriesPage(entries, user_id, user_name);
+  let title = "Entries";
+  res.send(layout(title, body))
+};
 
-module.exports = { get };
+function post(req, res) {
+    const { entry } = req.body;
+    createEntry(entry, 1); // fix when authentication is there;
+    res.redirect("/entries/1");
+}

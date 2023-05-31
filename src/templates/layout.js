@@ -1,4 +1,4 @@
-module.exports = layout;
+module.exports = { layout };
 
 function layout(title, content) {
   return /*html*/ `
