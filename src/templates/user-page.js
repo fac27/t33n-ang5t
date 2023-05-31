@@ -4,8 +4,8 @@ function entriesPage(entries, userId, userName) {
   const entryList = entries
     .map(
       (entry) => /*html*/ `
-    <div class="entry-post">
-      <div class="entry-post__header">
+    <div class="entry-post stack-sm">
+      <div class="entry-post__header no-top-margin">
         <p> 
           ${entry.posted_at} 
           <span class="entry-post__header${
@@ -13,29 +13,29 @@ function entriesPage(entries, userId, userName) {
           }">
             ${userId === entry.user_id ? userName : 'anonymous'}
           </span>
-      </p>
+        </p>
       </div>
       <div class="entry-post__body">
         ${entry.content}
       </div>
-    <div>`
+    </div>`
     )
     .join('');
 
   return /*html*/ `
-    <header class="header">
+    <header class="header row space-between">
       <div class="header__user-name">${userName}</div>
       <button class="header__log-out" type="button">
         Log out
-      <button>
+      </button>
     </header>
-    <section class="entries-display">
+    <section class="entries-display row fd-column">
       ${entryList}    
     </section>
     <form 
       action="/entries/:user_id" 
       method="POST"
-      class="submit-form"
+      class="submit-form row fd-column align-center"
     >
     <textarea 
       class="submit-form__content" 
