@@ -1,7 +1,7 @@
-module.exports = { createSession };
-
 const db = require('../database/db');
 const crypto = require('node:crypto');
+
+const getSession = () => {}
 
 const insert_session = db.prepare(/*sql*/ `
   INSERT INTO sessions (
@@ -19,3 +19,6 @@ function createSession( user_id) {
   const id = crypto.randomBytes(18).toString('base64');
   return insert_session.run(id, user_id);
 }
+
+
+module.exports = { createSession, getSession };
