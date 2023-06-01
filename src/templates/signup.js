@@ -21,12 +21,14 @@ function signUpForm(mode) {
         type="text" 
         name="username" 
         placeholder="Your user name"
+        class="submit-form__input"
         required
       >
       <input
         type="password"
         name="password"
         placeholder="Your password"
+        class="submit-form__input"
         required
       >
       <button type="submit" class="submit-form__button">
