@@ -1,9 +1,9 @@
 const {deleteSession} = require('../model/session')
 
-module.exports = { get, post };
+module.exports = { post };
 
 function post(req, res) {
-    const sid = req.session.sid
+    const sid = req.session.id
     deleteSession(sid)
     res.redirect('/')
 }

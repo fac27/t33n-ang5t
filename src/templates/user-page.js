@@ -25,9 +25,11 @@ function entriesPage(entries, userId, userName) {
   return /*html*/ `
     <header class="header row space-between">
       <div class="header__user-name">${userName}</div>
-      <button class="header__log-out" type="button">
+      <form method='POST' action='/log-out'> 
+        <button class="header__log-out" type="submit">
         Log out
-      </button>
+        </button>
+      </form>
     </header>
     <section class="entries-display row fd-column">
       ${entryList}    

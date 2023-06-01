@@ -15,7 +15,7 @@ function get(req, res) {
 function post(req, res) {
   const { username, password } = req.body;
   const user = getUser(username);
-
+  console.log(user)
   bcrypt.compare(password, user.hash).then((match) => {
     if (match) {
       createSession(user.user_id); // store this into sid for authentication

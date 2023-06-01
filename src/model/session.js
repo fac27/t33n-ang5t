@@ -27,4 +27,4 @@ function createSession( user_id) {
 }
 
 
-module.exports = { createSession, getSession };
+module.exports = { createSession, getSession, deleteSession };
