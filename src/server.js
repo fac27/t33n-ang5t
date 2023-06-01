@@ -39,7 +39,7 @@ server.get('/sign-up', signUp.get);
 server.post('/sign-up', bodyParser, signUp.post);
 server.get("/sign-in", signIn.get);
 server.post("/sign-in", bodyParser, signIn.post);
-//server.post("/sign-out", signOut.post);
+server.post("/sign-out", signOut.post);
 server.get('/entries/:user_id', entries.get);
 server.post('/entries/:user_id', bodyParser, entries.post);
 server.post('/entries/delete/:entry_id', entries.removeEntry);
