@@ -4,11 +4,9 @@ const { layout } = require('../templates/layout.js');
 const { signUpForm } = require('../templates/signup.js');
 const { createSession } = require('../model/session.js');
 const { getUserByName } = require('../model/user.js');
-const bcrypt = require('bcryptjs');
 const { sanitise } = require('../model/sanitise.js');
 
 module.exports = { get, post };
-åå
 function get(req, res) {
   const title = 'Sign In';
   const body = signUpForm('sign-in');
@@ -17,7 +15,8 @@ function get(req, res) {
 
 function post(req, res) {
   const { username, password } = req.body;
-  const user = getUserByName(santise(username));
+  const user = getUserByName(username);
+
   bcrypt.compare(password, user.hash).then((match) => {
     if (match) {
       const user_id = user.id;

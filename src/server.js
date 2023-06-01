@@ -22,7 +22,6 @@ server.use(cookies);
 server.use((req, res, next) => {
   if (!req.signedCookies?.sid) return next();
   const session = getSession(req.signedCookies.sid);
-    
   const isExpired = new Date() > new Date(session.expires_at) ;
     
   if (isExpired) {

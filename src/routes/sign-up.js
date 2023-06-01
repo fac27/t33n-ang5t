@@ -14,7 +14,6 @@ const post = async (req, res) => {
 
   const hash = await bcrypt.hash(password, 12);
   const userId = createUser(sanitise(username), hash);
-
   if (!userId) {
     res.status(400).send('Username must be unique');
   } else {
@@ -26,7 +25,7 @@ const post = async (req, res) => {
       sameSite: 'lax',
     });
 
-    res.redirect(`/entries/:${userId}`);
+    res.redirect(`/entries/:${userId.id}`);
   }
 };
 
