@@ -2,15 +2,18 @@ module.exports = { signUpForm };
 
 function signUpForm(mode) {
   const isSignUp = mode === 'sign-up';
+  const title = isSignUp ? 'Sign Up' : 'Sign In'
+  const path =  `/${title.replace(' ', '-').toLowerCase()}`
+
   return /*html*/ `
   <header class="header">
     <div class="header__user-name">
-      ${isSignUp ? 'Sign Up' : 'Sign In'}
+      ${title}
     </div>
   </header>
   <main class="main">
     <form
-      action= ${isSignUp ? '/sign-up' : '/log-in'}
+      action= ${path}
       method="POST"
       class="submit-form"
     >
@@ -20,16 +23,16 @@ function signUpForm(mode) {
         placeholder="Your user name"
         class="submit-form__input"
         required
-      ></input>
+      >
       <input
         type="password"
         name="password"
         placeholder="Your password"
         class="submit-form__input"
         required
-      ></input>
+      >
       <button type="submit" class="submit-form__button">
-        ${isSignUp ? 'Sign Up' : 'Log In'}
+        ${title}
       </button>
     </form>
   </main>

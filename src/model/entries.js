@@ -1,8 +1,11 @@
 const db = require('../database/db.js');
 
+module.exports = { getEntries, createEntry };
+
 // get entry from db
 const select_entries = db.prepare(/*sql*/ `
   SELECT 
+    id,
     content, 
     user_id, 
     strftime('%d/%m/%Y', posted_at) AS posted_at
@@ -10,7 +13,7 @@ const select_entries = db.prepare(/*sql*/ `
   ORDER BY posted_at DESC
 `);
 
-function listEntries() {
+function getEntries() {
   return select_entries.all();
 }
 
@@ -21,8 +24,8 @@ const create_entry = db.prepare(/*sql*/ `
     RETURNING entries.id
 `);
 
-const createEntry = (content, user_id) => {
+function createEntry(content, user_id) {
   return create_entry.get({ content, user_id });
 };
 
-module.exports = { listEntries, createEntry };
+module.exports = { getEntries, createEntry };

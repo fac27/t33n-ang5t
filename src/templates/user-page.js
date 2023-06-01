@@ -5,15 +5,18 @@ function entriesPage(entries, userId, userName) {
     .map(
       (entry) => /*html*/ `
     <div class="entry-post stack-sm">
-      <div class="entry-post__header no-top-margin">
+      <div class="entry-post__header no-top-margin row space-between">
         <p> 
           ${entry.posted_at} 
-          <span class="entry-post__header${
+          <span class="entry-post__header ${
             userId === entry.user_id ? `--user-name` : `--anonymous`
           }">
             ${userId === entry.user_id ? `<i>@${userName}</i>` : '@anonymous'}
           </span>
         </p>
+        <button class="entry-post__delete-button ${
+          userId === entry.user_id ? `row` : `hidden` 
+        }"> X </button>
       </div>
       <div class="entry-post__body">
         ${entry.content}
@@ -25,9 +28,11 @@ function entriesPage(entries, userId, userName) {
   return /*html*/ `
     <header class="header row space-between">
       <div class="header__user-name">${userName}</div>
-      <button class="header__log-out" type="button">
-        Log out
-      </button>
+      <form action='/sign-out' method='post'> 
+        <button class="header__sign-out" type="submit">
+        Sign out
+        </button>
+      </form>
     </header>
     <section class="entries-display row fd-column">
       ${entryList}    
