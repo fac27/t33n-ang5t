@@ -4,7 +4,7 @@ const { home } = require('../templates/home');
 const get = (req, res) => {
   const title = 'Welcome';
   const content = home();
-  if (session) res.redirect(`/entries/${req.session.user_id}`);
+  if (req?.session) res.redirect(`/entries/${req.session.user_id}`);
   res.send(layout(title, content));
 };
 
