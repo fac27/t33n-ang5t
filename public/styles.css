@@ -6,7 +6,7 @@ body {
 
 .center {
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; 
 }
 
 /* Utility classes - flex */
@@ -75,6 +75,15 @@ body {
 
 }
 
+.entry-post__delete-button {
+    height: 1rem;
+    width: 1rem;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .entry-post__body {
 
 }
@@ -92,4 +101,11 @@ body {
 
 .submit-form__button {
     margin-top: 1rem;
+}
+
+
+/* Utility classes - visibility - keep at bottom so applied after other styling */
+
+.hidden {
+    display: none;
 }
