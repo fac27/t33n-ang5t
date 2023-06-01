@@ -8,7 +8,7 @@ function entriesPage(entries, userId, userName) {
       <div class="entry-post__header no-top-margin row space-between">
         <p> 
           ${entry.posted_at} 
-          <span class="entry-post__header ${
+          <span class="entry-post__header`${
             userId === entry.user_id ? `--user-name` : `--anonymous`
           }">
             ${userId === entry.user_id ? `<i>@${userName}</i>` : '@anonymous'}
