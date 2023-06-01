@@ -3,6 +3,7 @@ const db = require('../database/db.js');
 // get entry from db
 const select_entries = db.prepare(/*sql*/ `
   SELECT 
+    id,
     content, 
     user_id, 
     strftime('%d/%m/%Y', posted_at) AS posted_at
@@ -25,4 +26,14 @@ const createEntry = (content, user_id) => {
   return create_entry.get({ content, user_id });
 };
 
-module.exports = { listEntries, createEntry };
+// delete diary entry from the db
+const delete_entry = db.prepare(/*sql*/ `
+  DELETE FROM entries
+  WHERE id = ?
+`);
+
+const deleteEntry = (entry_id) => {
+  delete_entry.run(entry_id);
+};
+
+module.exports = { listEntries, createEntry, deleteEntry };

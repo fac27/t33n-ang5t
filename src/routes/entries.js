@@ -1,8 +1,8 @@
-const { listEntries, createEntry } = require('../model/entries.js');
+const { listEntries, createEntry, deleteEntry } = require('../model/entries.js');
 const { layout } = require('../templates/layout.js');
 const { entriesPage } = require('../templates/user-page.js');
 
-module.exports = { get, post };
+module.exports = { get, post, removeEntry};
 
 function get(req, res) {
   const entries = listEntries();
@@ -16,5 +16,11 @@ function get(req, res) {
 function post(req, res) {
   const { entry } = req.body;
   createEntry(entry, 1); // fix when authentication is there;
+  res.redirect('/entries/1');
+}
+
+function removeEntry(req, res) {
+  const entryId = req.params.entry_id;
+  deleteEntry(entryId);
   res.redirect('/entries/1');
 }
