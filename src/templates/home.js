@@ -6,14 +6,8 @@ function home() {
     <div class="header__user-name">t33n ang5t<div>
   </header>
   <main class="main">
-    <form action="/" method="POST" class="main__form">
-      <button type="submit" name="sign-up">
-        Sign up
-      </button>
-      <button type="submit" name="log-in">
-        Log in
-      </button>
-    </form>
+    <a href="/sign-up">Sign up</a>
+    <a href="/log-in">Log in</a>
   </main>
 `;
 }
