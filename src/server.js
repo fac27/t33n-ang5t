@@ -5,7 +5,9 @@ const signUp = require('./routes/sign-up.js');
 const signIn = require('./routes/sign-in.js');
 const signOut = require('./routes/sign-out.js');
 const entries = require('./routes/entries.js');
+const removeEntry = require('./routes/remove-entry.js')
 const { getSession } = require('./model/session.js');
+
 require('dotenv').config();
 
 const server = express();
@@ -41,5 +43,6 @@ server.post("/sign-in", bodyParser, signIn.post);
 //server.post("/sign-out", signOut.post);
 server.get('/entries/:user_id', entries.get);
 server.post('/entries/:user_id', bodyParser, entries.post);
+server.post('/entries/delete/:entry_id', entries.removeEntry);
 
 module.exports = server;
