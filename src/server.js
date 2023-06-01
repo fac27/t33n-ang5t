@@ -12,6 +12,7 @@ const server = express();
 
 const bodyParser = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
+
 server.use(express.static('public'));
 
 // check session from cookie
