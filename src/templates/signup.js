@@ -5,7 +5,7 @@ function signUpForm(mode) {
   return /*html*/ `
   <header class="header">
     <div class="header__user-name">
-      ${mode === isSignUp ? 'Sign Up' : 'Log In'}
+      ${isSignUp ? 'Sign Up' : 'Sign In'}
     </div>
   </header>
   <main class="main">
@@ -21,7 +21,7 @@ function signUpForm(mode) {
         required
       ></input>
       <input
-        type="text"
+        type="password"
         name="password"
         placeholder="Your password"
         required
