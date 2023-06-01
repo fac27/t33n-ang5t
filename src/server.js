@@ -1,9 +1,9 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const home = require('./routes/home.js');
-const signup = require('./routes/sign-up.js');
-const login = require('./routes/log-in.js');
-const logout = require('./routes/log-out.js');
+const signUp = require('./routes/sign-up.js');
+const signIn = require('./routes/sign-in.js');
+const signOut = require('./routes/sign-out.js');
 const entries = require('./routes/entries.js');
 const { getSession } = require('./model/session.js');
 require('dotenv').config();
@@ -36,11 +36,11 @@ server.use((req, res, next) => {
 
 server.use(cookies);
 server.get('/', home.get);
-server.get('/sign-up', signup.get);
-server.post('/sign-up', bodyParser, signup.post);
-server.get("/log-in", login.get);
-server.post("/log-in", bodyParser, login.post);
-//server.post("/log-out", logout.post);
+server.get('/sign-up', signUp.get);
+server.post('/sign-up', bodyParser, signUp.post);
+server.get("/sign-in", signIn.get);
+server.post("/sign-in", bodyParser, signIn.post);
+//server.post("/sign-out", signOut.post);
 server.get('/entries/:user_id', entries.get);
 server.post('/entries/:user_id', bodyParser, entries.post);
 
