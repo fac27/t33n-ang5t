@@ -2,22 +2,36 @@ const DIR = "src";
 
 const server = require(`../${DIR}/server.js`);
 const db = require(`../${DIR}/database/db.js`);
-const { createUser, getUserByEmail: getUser } = require(`../${DIR}/model/user.js`);
+const { getUser, createUser } = require(`../${DIR}/model/user.js`);
 const { getSession, createSession } = require(`../${DIR}/model/session.js`);
-const { listConfessions: listEntries } = require(`../${DIR}/model/entries.js`);
+const { getEntries, createEntry } = require(`../${DIR}/model/entries.js`);
+
+module.exports = {
+  reset,
+  db,
+  createUser,
+  getUser,
+  createSession,
+  getSession,
+  createEntry,
+  getEntries,
+  request,
+  get_sid,
+};
 
 function reset() {
   db.exec(/*sql*/ `
-    DELETE FROM confessions;
+    DELETE FROM entries;
     DELETE FROM sessions;
     DELETE FROM users;
-    DELETE FROM sqlite_sequence WHERE name IN ('confessions', 'sessions', 'users');
+    DELETE FROM sqlite_sequence WHERE name IN ('entries', 'sessions', 'users');
   `);
 }
 
 async function request(pathname, options = {}) {
   const app = server.listen(0);
   const { port } = app.address();
+  console.log(port)
   const url = new URL(pathname, `http://localhost:${port}`);
   options.headers = { ...options.headers, connection: "close" };
   const response = await fetch(url, options);
@@ -34,14 +48,3 @@ function get_sid(headers) {
   return decodeURIComponent(encoded_sid);
 }
 
-module.exports = {
-  reset,
-  db,
-  createUser,
-  getUserByEmail: getUser,
-  getSession,
-  createSession,
-  listConfessions: listEntries,
-  request,
-  get_sid,
-};
