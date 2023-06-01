@@ -17,12 +17,11 @@ const post = async (req, res) => {
   if (!userId) {
     res.status(400).send('Username must be unique');
   } else {
-    const sessionId = createSession(userId.id);
-
+    const sessionId = createSession(userId.id).id;
     res.cookie('sid', sessionId, {
       signed: true,
       httpOnly: true,
-      maxAge: 604800,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
       sameSite: 'lax',
     });
 
