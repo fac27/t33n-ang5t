@@ -64,19 +64,34 @@ body {
 
 .entries-display {
     margin: 1rem;
+    overflow:auto;
+    height:75vmin;
+    border-radius: 20px;
 }
 
 .entry-post {
-    border: solid black 0.1rem;
     padding: 0 1rem 1rem;
+    border-radius:20px;
+    background-color:rgb(70,70,70,5%);
+    font-size:1.1em;
+    letter-spacing: .1em;
+    line-height:1.8em;
 }
 
 .entry-post__header {
+    font-family:sans-serif;
+}
 
+.entry-post__header--user-name{
+    color:hotpink;
+}
+
+.entry-post__header-anonymous{
+    
 }
 
 .entry-post__body {
-
+    font-family:fantasy;
 }
 
 /* Form */
@@ -88,8 +103,10 @@ body {
 .submit-form__content {
     width: 20rem;
     height: 5rem;
+    resize:none;
 }
 
 .submit-form__button {
     margin-top: 1rem;
+
 }
