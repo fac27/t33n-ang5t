@@ -1,12 +1,14 @@
 const db = require('../database/db.js');
 
+module.exports = {createUser, getUser };
+
 const insert_user = db.prepare(/*sql*/ `
     INSERT INTO users (username, hash)
     VALUES ($username, $hash)
     RETURNING id
 `);
 
-const createUser = (username, hash) => {
+function createUser(username, hash) {
   try {
     return insert_user.get({ username, hash });
   } catch (error) {
@@ -27,4 +29,3 @@ function getUser(userName) {
   return select_user.get(userName);
 }
 
-module.exports = {createUser, getUser };

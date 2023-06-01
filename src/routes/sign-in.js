@@ -9,8 +9,8 @@ const { sanitise } = require('../model/sanitise.js');
 module.exports = { get, post };
 
 function get(req, res) {
-  const title = 'Log In';
-  const body = signUpForm('log-in');
+  const title = 'Sign In';
+  const body = signUpForm('sign-in');
   res.send(layout(title, body));
 }
 

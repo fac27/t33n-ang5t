@@ -7,7 +7,7 @@ function home() {
   </header>
   <main class="main">
     <a href="/sign-up">Sign up</a>
-    <a href="/log-in">Log in</a>
+    <a href="/sign-in">Sign in</a>
   </main>
 `;
 }
