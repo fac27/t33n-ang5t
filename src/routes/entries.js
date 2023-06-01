@@ -2,6 +2,7 @@ const { getEntries, createEntry } = require('../model/entries.js');
 const { getUser } = require('../model/user.js');
 const { layout } = require('../templates/layout.js');
 const { entriesPage } = require('../templates/user-page.js');
+const { sanitise } = require('../model/sanitise.js');
 
 module.exports = { get, post };
 
