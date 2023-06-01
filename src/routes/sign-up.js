@@ -1,11 +1,14 @@
 const { signUpForm } = require('../templates/signup');
+const { layout } = require('../templates/layout.js');
 const { createUser } = require('../model/user');
 const { createSession } = require('../model/session');
 
 const bcrypt = require('bcryptjs');
 
 const get = (req, res) => {
-  res.send(signUpForm('sign-up'));
+  const body = signUpForm('sign-up');
+  const title = 'Sign in';
+  res.send(layout(title, body));
 };
 
 const post = async (req, res) => {

@@ -57,7 +57,6 @@ body {
 }
 
 .header__log-out {
-
 }
 
 /* Entry List */
@@ -98,15 +97,27 @@ body {
 
 .submit-form {
     margin: 1rem;
+    display:flex;
+    flex-flow:column nowrap;
+    align-items:center;
+    justify-content: space-evenly;
 }
 
 .submit-form__content {
     width: 20rem;
     height: 5rem;
     resize:none;
+    border-radius: 20px;
+}
+
+.submit-form__input{
+    padding:.5em;
+    border-radius:10px;
 }
 
 .submit-form__button {
     margin-top: 1rem;
-
+    border-radius:20px;
+    border:none;
+    padding:.5rem;
 }
