@@ -1,7 +1,7 @@
 const db = require('../database/db');
 const crypto = require('node:crypto');
 
-module.exports = { createSession, getSession };
+module.exports = { createSession, getSession, deleteSession };
 
 const select_session = db.prepare(/*sql*/ `
   SELECT *
@@ -12,6 +12,16 @@ const select_session = db.prepare(/*sql*/ `
 function getSession(sid) {
   return select_session.get(sid);
 }
+
+const delete_session = db.prepare(/*sql*/ `
+  DELETE FROM sessions 
+  WHERE id = ?
+  `)
+
+function deleteSession(sid) {
+  return delete_session.run(sid);
+}
+
 
 const insert_session = db.prepare(/*sql*/ `
   INSERT INTO sessions (
