@@ -14,6 +14,7 @@ const server = express();
 
 const bodyParser = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
+
 server.use(express.static('public'));
 
 // check session from cookie
@@ -22,10 +23,9 @@ server.use((req, res, next) => {
   const session = getSession(sessionId);
 
   if (session) {
-    const expiryDate = new Date(session.expires_at);
-    const currentDate = new Date();
-
-    if (currentDate > expiryDate) {
+    const isExpired = new Date() > new Date(session.expires_at) ;
+    
+    if (isExpired) {
       removeSession(sid);
       res.clearCookie('sid');
     } else {
