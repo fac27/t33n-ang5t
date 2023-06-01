@@ -11,14 +11,13 @@ const get = (req, res) => {
 const post = async (req, res) => {
   const { username, password } = req.body;
 
-  // when a unique constraint fails by the db, the error is not handled well
+  const hash = await bcrypt.hash(password, 12);
+  const userId = createUser(username, hash);
 
-  if (!username || !password) {
-    res.status(400).send('Bad Input');
+  if (!userId) {
+    res.status(400).send('Username must be unique');
   } else {
-    const hash = await bcrypt.hash(password, 12);
-    const userId = createUser(username, hash).id;
-    const sessionId = createSession(userId);
+    const sessionId = createSession(userId.id);
 
     res.cookie('sid', sessionId, {
       signed: true,

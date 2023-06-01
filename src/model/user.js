@@ -7,7 +7,11 @@ const create_user = db.prepare(/*sql*/ `
 `);
 
 const createUser = (username, hash) => {
-  return create_user.get({ username, hash });
+  try {
+    return create_user.get({ username, hash });
+  } catch (error) {
+    return null;
+  }
 };
 
 module.exports = { createUser };
