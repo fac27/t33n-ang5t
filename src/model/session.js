@@ -1,6 +1,12 @@
 const db = require('../database/db');
 const crypto = require('node:crypto');
 
+const delete_session = db.prepare(/*sql*/ 'DELETE FROM sessions WHERE id = ?')
+
+function deleteSession(sid) {
+  delete_session.run(sid)
+}
+
 const getSession = () => {}
 
 const insert_session = db.prepare(/*sql*/ `

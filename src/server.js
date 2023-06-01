@@ -40,7 +40,7 @@ server.get('/sign-up', signup.get);
 server.post('/sign-up', bodyParser, signup.post);
 server.get("/log-in", login.get);
 server.post("/log-in", bodyParser, login.post);
-//server.post("/log-out", logout.post);
+server.post("/log-out", logout.post);
 server.get('/entries/:user_id', entries.get);
 server.post('/entries/:user_id', bodyParser, entries.post);
 
