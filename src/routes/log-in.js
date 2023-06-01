@@ -19,7 +19,7 @@ function post(req, res) {
   bcrypt.compare(password, user.hash).then((match) => {
     if (match) {
       createSession(user.user_id); // store this into sid for authentication
-      res.redirect(`/entries/${userId}`);
+      res.redirect(`/entries/${user.user_id}`);
     } else {
       res.status(400).send('<h1> :( </h1>');
     }
