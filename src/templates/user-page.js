@@ -14,9 +14,11 @@ function entriesPage(entries, userId, userName) {
             ${userId === entry.user_id ? userName : 'anonymous'}
           </span>
         </p>
-        <button class="entry-post__delete-button ${
-          userId === entry.user_id ? `row` : `hidden` 
-        }"> X </button>
+        <form action="/entries/delete/${entry.id}" method="POST" class="entry-post__delete-button-form" >
+          <button class="entry-post__delete-button ${
+            userId === entry.user_id ? `row` : `hidden` 
+          }" type="submit"> X </button>
+        </form>
       </div>
       <div class="entry-post__body">
         ${entry.content}

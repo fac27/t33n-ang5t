@@ -5,6 +5,7 @@ module.exports = { getEntries, createEntry };
 // get entry from db
 const select_entries = db.prepare(/*sql*/ `
   SELECT 
+    id,
     content, 
     user_id, 
     strftime('%d/%m/%Y', posted_at) AS posted_at
@@ -26,3 +27,5 @@ const create_entry = db.prepare(/*sql*/ `
 function createEntry(content, user_id) {
   return create_entry.get({ content, user_id });
 };
+
+module.exports = { listEntries, createEntry };
