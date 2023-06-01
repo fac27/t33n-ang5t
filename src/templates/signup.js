@@ -19,13 +19,13 @@ function signUpForm(mode) {
         name="username" 
         placeholder="Your user name"
         required
-      ></input>
+      >
       <input
         type="text"
         name="password"
         placeholder="Your password"
         required
-      ></input>
+      >
       <button type="submit" class="submit-form__button">
         ${isSignUp ? 'Sign Up' : 'Log In'}
       </button>
