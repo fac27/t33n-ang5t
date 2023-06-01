@@ -5,7 +5,6 @@ function sanitise(dirtyData) {
     '<': '&lt;',
     '>': '&gt;',
   };
-  const cleanData = dirtyData.replace(/<||>/gi, (match) => riskInputs[match]);
-  console.log(cleanData);
+  const cleanData = dirtyData.replace(/<||>/gi, (match) => riskInputs[match]).toString();
   return cleanData;
 }
