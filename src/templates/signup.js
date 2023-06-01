@@ -4,7 +4,7 @@ function signUpForm(mode) {
   const isSignUp = mode === 'sign-up';
   const title = isSignUp ? 'Sign Up' : 'Sign In'
   const path =  `/${title.replace(' ', '-').toLowerCase()}`
-  
+
   return /*html*/ `
   <header class="header">
     <div class="header__user-name">

@@ -17,26 +17,23 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 
 server.use(express.static('public'));
 
+server.use(cookies);
 // check session from cookie
 server.use((req, res, next) => {
-  const sessionId = req.signedCookies && req.signedCookies.sid;
-  const session = getSession(sessionId);
-
-  if (session) {
-    const isExpired = new Date() > new Date(session.expires_at) ;
+  if (!req.signedCookies?.sid) return next();
+  const session = getSession(req.signedCookies.sid);
+  const isExpired = new Date() > new Date(session.expires_at) ;
     
-    if (isExpired) {
-      removeSession(sid);
-      res.clearCookie('sid');
-    } else {
-      req.session = session;
-    }
+  if (isExpired) {
+    removeSession(sid);
+    res.clearCookie('sid');
+  } else {
+    req.session = session;
   }
-
+    
   next();
 });
 
-server.use(cookies);
 server.get('/', home.get);
 server.get('/sign-up', signUp.get);
 server.post('/sign-up', bodyParser, signUp.post);

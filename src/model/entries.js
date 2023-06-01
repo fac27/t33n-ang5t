@@ -28,4 +28,4 @@ function createEntry(content, user_id) {
   return create_entry.get({ content, user_id });
 };
 
-module.exports = { listEntries, createEntry };
+module.exports = { getEntries, createEntry };
