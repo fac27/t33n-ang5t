@@ -1,7 +1,15 @@
 const db = require('../database/db');
 const crypto = require('node:crypto');
 
-const getSession = () => {}
+const select_session = db.prepare(/*sql*/ `
+  SELECT *
+  FROM sessions 
+  WHERE id = ?
+  `)
+
+const getSession = (sid) => {
+  return select_session.get(sid);
+}
 
 const insert_session = db.prepare(/*sql*/ `
   INSERT INTO sessions (

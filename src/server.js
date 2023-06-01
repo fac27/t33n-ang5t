@@ -20,10 +20,9 @@ server.use((req, res, next) => {
   const session = getSession(sessionId);
 
   if (session) {
-    const expiryDate = new Date(session.expires_at);
-    const currentDate = new Date();
-
-    if (currentDate > expiryDate) {
+    const expired = new Date() > new Date(session.expires_at) ;
+    
+    if (expired) {
       removeSession(sid);
       res.clearCookie('sid');
     } else {
