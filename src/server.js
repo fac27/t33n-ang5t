@@ -16,7 +16,6 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 server.use(express.static('public'));
 
 server.use(cookies);
-server.use(cookies);
 server.use((req, res, next) => {
   const sessionId = req.signedCookies && req.signedCookies.sid;
   const session = getSession(sessionId);
