@@ -7,7 +7,7 @@ const select_session = db.prepare(/*sql*/ `
   SELECT *
   FROM sessions 
   WHERE id = ?
-  `)
+  `);
 
 function getSession(sid) {
   return select_session.get(sid);
@@ -16,12 +16,11 @@ function getSession(sid) {
 const delete_session = db.prepare(/*sql*/ `
   DELETE FROM sessions 
   WHERE id = ?
-  `)
+  `);
 
 function deleteSession(sid) {
   return delete_session.run(sid);
 }
-
 
 const insert_session = db.prepare(/*sql*/ `
   INSERT INTO sessions (
@@ -35,7 +34,7 @@ const insert_session = db.prepare(/*sql*/ `
   ) RETURNING id
 `);
 
-function createSession( user_id) {
+function createSession(user_id) {
   const id = crypto.randomBytes(18).toString('base64');
   return insert_session.get(id, user_id);
 }
