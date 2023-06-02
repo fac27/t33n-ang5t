@@ -12,7 +12,7 @@ function get(req, res) {
   const user_name = getUser(user_id).username;
   const body = entriesPage(entries, user_id, user_name);
   const title = 'Entries';
-  res.send(layout(title, body));
+  return res.send(layout(title, body));
 }
 
 function post(req, res) {

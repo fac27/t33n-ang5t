@@ -1,5 +1,5 @@
-const db = require('../database/db');
 const crypto = require('node:crypto');
+const db = require('../database/db');
 
 module.exports = { createSession, getSession, deleteSession };
 

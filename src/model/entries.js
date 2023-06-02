@@ -36,7 +36,3 @@ function deleteEntry(entries_id) {
 }
 
 module.exports = { getEntries, createEntry, deleteEntry };
-
-function deleteEntry(entry_id) {
-  delete_entry.run(entry_id);
-}
