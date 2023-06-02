@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+}
+
+/* Utility classes - layout */
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Utility classes - flex */
+
+.row {
+    display: flex;
+}
+
+.fd-column {
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* Utility classes - stack */
+
+.stack-sm {
+    margin-bottom: 1.5rem;
+}
+
+.stack-med {
+    margin-bottom: 3rem;
+}
+
+.stack-lg {
+    margin-top: 6rem;
+}
+
+.no-top-margin {
+    margin-top: 0;
+}
+
+/* Header */
+
+.header {
+    padding: 1rem;
+}
+
+.header__user-name {
+    padding: 0.2rem;
+    border: solid black 0.1rem;
+}
+
+/* Entry List */
+
+.entries-display {
+    margin: 1rem;
+    overflow:auto;
+    height:75vmin;
+    border-radius: 20px;
+}
+
+.entry-post {
+    padding: 0 1rem 1rem;
+    border-radius:20px;
+    background-color:rgb(70,70,70,5%);
+    font-size:1.1em;
+    letter-spacing: .1em;
+    line-height:1.8em;
+}
+
+.entry-post__header {
+    font-family:sans-serif;
+}
+
+.entry-post__header--user-name{
+    color:hotpink;
+}
+
+.entry-post__header-anonymous{
+    font-size:0.7em;
+}
+
+.entry-post__delete-button {
+    height: 1rem;
+    width: 1rem;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.entry-post__body {
+    font-family:fantasy;
+}
+
+/* Form */
+
+.submit-form {
+    margin: 1rem;
+    display:flex;
+    flex-flow:column nowrap;
+    align-items:center;
+    justify-content: space-evenly;
+}
+
+.submit-form__content {
+    width: 20rem;
+    height: 5rem;
+    resize:none;
+    border-radius: 20px;
+}
+
+.submit-form__input{
+    padding:.5em;
+    border-radius:10px;
+}
+
+.submit-form__button {
+    margin-top: 1rem;
+    border-radius:20px;
+    border:none;
+    padding:.5rem;
+}
+
+
+/* Utility classes - visibility - keep at bottom so applied after other styling */
+
+.hidden {
+    display: none;
+}
