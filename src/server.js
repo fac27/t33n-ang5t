@@ -18,21 +18,19 @@ server.use(express.static('public'));
 
 server.use(cookies);
 server.use((req, res, next) => {
-  const sessionId = req.signedCookies && req.signedCookies.sid;
-  const session = getSession(sessionId);
+  if (!req.signedCookies?.sid) return next();
+  const sid = req.signedCookies.sid;
+  const session = getSession(sid);
+  const isExpired = new Date() > new Date(session.expires_at);
 
-  if (session) {
-    const isExpired = new Date() > new Date(session.expires_at);
-
-    if (isExpired) {
-      deleteSession(sessionId);
-      res.clearCookie('sid');
-    } else {
-      req.session = session;
-    }
+  if (isExpired) {
+    deleteSession(sid);
+    res.clearCookie('sid');
+  } else {
+    req.session = session;
   }
 
-  next();
+  return next();
 });
 
 server.get('/', home.get);

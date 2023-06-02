@@ -6,13 +6,15 @@ const { createUser } = require('../model/user');
 const { createSession } = require('../model/session');
 const { sanitise } = require('../model/sanitise.js');
 
-const get = (req, res) => {
+module.exports = { get, post };
+
+function get(req, res) {
   const body = signUpForm('sign-up');
   const title = 'Sign in';
   res.send(layout(title, body));
-};
+}
 
-const post = async (req, res) => {
+async function post(req, res) {
   const { username, password } = req.body;
 
   const hash = await bcrypt.hash(password, 12);
@@ -31,6 +33,4 @@ const post = async (req, res) => {
 
     res.redirect(`/entries/:${userId.id}`);
   }
-};
-
-module.exports = { get, post };
+}
