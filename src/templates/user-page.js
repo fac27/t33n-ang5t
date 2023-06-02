@@ -8,16 +8,16 @@ function entriesPage(entries, userId, userName) {
       <div class="entry-post__header no-top-margin row space-between">
         <p> 
           ${entry.posted_at} 
-          <span class="entry-post__header`${
+          <span class="entry-post__header ${
             userId === entry.user_id ? `--user-name` : `--anonymous`
           }">
-            ${userId === entry.user_id ? `<i>@${userName}</i>` : '@anonymous'}
+            ${userId === entry.user_id ? userName : 'anonymous'}
           </span>
         </p>
         <form action="/entries/delete/${entry.id}" method="POST" class="entry-post__delete-button-form" >
-        <button class="entry-post__delete-button ${
-          userId === entry.user_id ? `row` : `hidden` 
-        }" type="submit"> X </button>
+          <button class="entry-post__delete-button ${
+            userId === entry.user_id ? `row` : `hidden` 
+          }" type="submit"> X </button>
         </form>
       </div>
       <div class="entry-post__body">
@@ -30,11 +30,9 @@ function entriesPage(entries, userId, userName) {
   return /*html*/ `
     <header class="header row space-between">
       <div class="header__user-name">${userName}</div>
-      <form action='/sign-out' method='post'> 
-        <button class="header__sign-out" type="submit">
-        Sign out
-        </button>
-      </form>
+      <button class="header__log-out" type="button">
+        Log out
+      </button>
     </header>
     <section class="entries-display row fd-column">
       ${entryList}    
