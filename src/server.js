@@ -5,7 +5,6 @@ const signUp = require('./routes/sign-up.js');
 const signIn = require('./routes/sign-in.js');
 const signOut = require('./routes/sign-out.js');
 const entries = require('./routes/entries.js');
-const removeEntry = require('./routes/remove-entry.js')
 const { getSession } = require('./model/session.js');
 
 require('dotenv').config();
