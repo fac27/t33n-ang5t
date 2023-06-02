@@ -30,7 +30,7 @@ const insert_session = db.prepare(/*sql*/ `
   ) VALUES (
     ?,
     ?,
-    DATE('now' + '7 days')
+    DATE('now', ('+7 days'))
   ) RETURNING id
 `);
 
