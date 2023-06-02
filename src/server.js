@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const home = require('./routes/home.js');
@@ -7,8 +8,6 @@ const signOut = require('./routes/sign-out.js');
 const entries = require('./routes/entries.js');
 const { getSession, deleteSession } = require('./model/session.js');
 
-require('dotenv').config();
-
 const server = express();
 
 const bodyParser = express.urlencoded({ extended: false });
@@ -17,20 +16,23 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 server.use(express.static('public'));
 
 server.use(cookies);
+server.use(cookies);
 server.use((req, res, next) => {
-  if (!req.signedCookies?.sid) return next();
-  const sid = req.signedCookies.sid;
-  const session = getSession(sid);
-  const isExpired = new Date() > new Date(session.expires_at);
+  const sessionId = req.signedCookies && req.signedCookies.sid;
+  const session = getSession(sessionId);
 
-  if (isExpired) {
-    deleteSession(sid);
-    res.clearCookie('sid');
-  } else {
-    req.session = session;
+  if (session) {
+    const isExpired = new Date() > new Date(session.expires_at);
+
+    if (isExpired) {
+      deleteSession(sessionId);
+      res.clearCookie('sid');
+    } else {
+      req.session = session;
+    }
   }
 
-  return next();
+  next();
 });
 
 server.get('/', home.get);
