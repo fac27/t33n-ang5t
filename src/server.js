@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const home = require('./routes/home.js');
@@ -7,8 +8,6 @@ const signOut = require('./routes/sign-out.js');
 const entries = require('./routes/entries.js');
 const { getSession, deleteSession } = require('./model/session.js');
 
-require('dotenv').config();
-
 const server = express();
 
 const bodyParser = express.urlencoded({ extended: false });
@@ -16,6 +15,7 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 
 server.use(express.static('public'));
 
+server.use(cookies);
 server.use(cookies);
 server.use((req, res, next) => {
   const sessionId = req.signedCookies && req.signedCookies.sid;

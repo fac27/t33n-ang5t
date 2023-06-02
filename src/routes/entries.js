@@ -2,6 +2,7 @@ const { getEntries, createEntry, deleteEntry } = require('../model/entries.js');
 const { getUser } = require('../model/user.js');
 const { layout } = require('../templates/layout.js');
 const { entriesPage } = require('../templates/user-page.js');
+const { sanitise } = require('../model/sanitise.js');
 
 module.exports = { get, post, remove };
 
@@ -18,7 +19,7 @@ function get(req, res) {
 function post(req, res) {
   const { entry } = req.body;
   const user_id = req.session.user_id;
-  createEntry(entry, user_id);
+  createEntry(sanitise(entry), user_id);
   res.redirect(`/entries/${user_id}`);
 }
 

@@ -32,8 +32,8 @@ function post(req, res) {
     } else {
       res.status(400).send(`
           <script>
-            alert("something went wrong"); window.location.href =
-            "/";{' '}
+            alert("something went wrong"); 
+            window.location.href = "/";
           </script>`);
     }
   });
