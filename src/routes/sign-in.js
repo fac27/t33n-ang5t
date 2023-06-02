@@ -7,6 +7,7 @@ const { getUserByName } = require('../model/user.js');
 const { sanitise } = require('../model/sanitise.js');
 
 module.exports = { get, post };
+
 function get(req, res) {
   const title = 'Sign In';
   const body = signUpForm('sign-in');
@@ -15,7 +16,7 @@ function get(req, res) {
 
 function post(req, res) {
   const { username, password } = req.body;
-  const user = getUserByName(username);
+  const user = getUserByName(sanitise(username));
 
   bcrypt.compare(password, user.hash).then((match) => {
     if (match) {
@@ -29,15 +30,11 @@ function post(req, res) {
       }); // store this into sid for authentication
       res.redirect(`/entries/${user_id}`);
     } else {
-      res
-        .status(400)
-        .send(`
+      res.status(400).send(`
           <script>
             alert("something went wrong"); window.location.href =
             "/";{' '}
-          </script>`
-        )
-      ;
+          </script>`);
     }
   });
 }
