@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Adjust NODE_VERSION as desired
-ARG NODE_VERSION=18.13.0
+ARG NODE_VERSION=18.16.0
 FROM node:${NODE_VERSION}-slim as base
 
 LABEL fly_launch_runtime="Node.js"
@@ -18,10 +18,10 @@ FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install -y python-is-python3 pkg-config build-essential
+    apt-get install -y python-is-python3 pkg-config build-essential 
 
 # Install node modules
-COPY --link package-lock.json package.json ./
+COPY --link package.json package-lock.json ./
 RUN npm ci --include=dev
 
 # Copy application code
@@ -40,7 +40,7 @@ COPY --from=build /app /app
 # Setup sqlite3 on a separate volume
 RUN mkdir -p /data
 VOLUME /data
-ENV DB_FILE="file:///data/sqlite.db"
+ENV DATABASE_URL="sqlite3:///data/production.sqlite3"
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

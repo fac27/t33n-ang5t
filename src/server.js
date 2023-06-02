@@ -5,8 +5,7 @@ const signUp = require('./routes/sign-up.js');
 const signIn = require('./routes/sign-in.js');
 const signOut = require('./routes/sign-out.js');
 const entries = require('./routes/entries.js');
-const removeEntry = require('./routes/remove-entry.js');
-const { getSession } = require('./model/session.js');
+const { getSession, deleteSession } = require('./model/session.js');
 
 require('dotenv').config();
 
@@ -18,7 +17,6 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 server.use(express.static('public'));
 
 server.use(cookies);
-// check session from cookie
 server.use((req, res, next) => {
   const sessionId = req.signedCookies && req.signedCookies.sid;
   const session = getSession(sessionId);
@@ -27,7 +25,7 @@ server.use((req, res, next) => {
     const isExpired = new Date() > new Date(session.expires_at);
 
     if (isExpired) {
-      removeSession(sid);
+      deleteSession(sid);
       res.clearCookie('sid');
     } else {
       req.session = session;
@@ -45,6 +43,6 @@ server.post('/sign-in', bodyParser, signIn.post);
 server.post('/sign-out', signOut.post);
 server.get('/entries/:user_id', entries.get);
 server.post('/entries/:user_id', bodyParser, entries.post);
-server.post('/entries/delete/:entry_id', entries.removeEntry);
+server.post('/entries/delete/:entry_id', entries.remove);
 
 module.exports = server;

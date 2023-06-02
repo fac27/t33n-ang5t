@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for t33n-ang5t on 2023-06-01T17:21:29+01:00
+# fly.toml app configuration file generated for t33n-ang5t on 2023-06-02T11:06:25+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -6,17 +6,13 @@
 app = "t33n-ang5t"
 primary_region = "lhr"
 
-[env]
-  COOKIE_SECRET = "mwOkzEhuE6D520EZNyD3kGYl"
-  DB_FILE = "/data/db.sqlite"
-
 [[mounts]]
   source = "data"
   destination = "/data"
 
-[[services]]
-  internal_port = 8080
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0

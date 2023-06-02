@@ -1,16 +1,14 @@
 const db = require('../database/db.js');
 
-module.exports = { getEntries, createEntry };
-
 // get entry from db
 const select_entries = db.prepare(/*sql*/ `
-  SELECT 
+  SELECT
     id,
-    content, 
-    user_id, 
+    content,
+    user_id,
     strftime('%d/%m/%Y', posted_at) AS posted_at
   FROM entries
-  ORDER BY posted_at DESC
+  ORDER BY id DESC
 `);
 
 function getEntries() {
@@ -18,14 +16,27 @@ function getEntries() {
 }
 
 // insert diary entry into the db
-const create_entry = db.prepare(/*sql*/ `
+const insert_entry = db.prepare(/*sql*/ `
     INSERT INTO entries (content, user_id)
     VALUES ($content, $user_id)
     RETURNING entries.id
 `);
 
 function createEntry(content, user_id) {
-  return create_entry.get({ content, user_id });
-};
+  return insert_entry.get({ content, user_id });
+}
 
-module.exports = { getEntries, createEntry };
+// delete entry from db
+const delete_entry = db.prepare(/*sql*/ `
+  DELETE FROM entries WHERE id = $entries_id
+`);
+
+function deleteEntry(entries_id) {
+  delete_entry.run({ entries_id });
+}
+
+module.exports = { getEntries, createEntry, deleteEntry };
+
+function deleteEntry(entry_id) {
+  delete_entry.run(entry_id);
+}
