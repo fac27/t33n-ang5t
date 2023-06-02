@@ -7,10 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "start": "node src/index.js",
-    "dev": "DB_FILE=db.sqlite nodemon ./src/index.js",
-    "seed": "DB_FILE=db.sqlite node ./src/database/seed.js",
+    "dev": "nodemon ./src/index.js",
+    "seed": "DB_FILE=test.sqlite node ./src/database/seed.js",
     "prettier": "prettier --write \"src/**/*.js\""
   },
   "repository": {
@@ -30,17 +30,17 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "better-sqlite3": "^8.4.0",
-    "chalk": "^5.2.0",
     "cookie-parser": "^1.4.6",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "nodemon": "^2.0.22",
-    "volta": "^0.0.0"
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.7",
     "eslint": "^8.41.0",
     "eslint-config-kentcdodds": "^20.5.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "dotenv": "^16.0.3",
+    "chalk": "^5.2.0",
+    "nodemon": "^2.0.22",
+    "volta": "^0.0.0"
   }
 }
