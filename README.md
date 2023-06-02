@@ -2,6 +2,10 @@
 
 FacTales allows emotional teens to submit diary entries and view anonymised entries from other users. Diary entries are stored in a SQLite database. Users need to sign up and log in with their own username and password. They can delete their own entries.
 
+## Visit the deployed site
+
+t33n ang5t is deployed [here](https://t33n-ang5t.fly.dev/)
+
 ## Collaborating
 
 **Clone the Repo**
