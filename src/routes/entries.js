@@ -25,6 +25,7 @@ function post(req, res) {
 
 function remove(req, res) {
   const entryId = req.params.entry_id;
+  const user_id = req.session.user_id;
   deleteEntry(entryId);
-  res.redirect('/entries/1');
+  res.redirect(`/entries/${user_id}`);
 }
