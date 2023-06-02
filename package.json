@@ -11,7 +11,8 @@
     "start": "node src/index.js",
     "dev": "nodemon ./src/index.js",
     "seed": "DB_FILE=test.sqlite node ./src/database/seed.js",
-    "prettier": "prettier --write \"src/**/*.js\""
+    "prettier": "prettier --write \"src/**/*.js\"",
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",

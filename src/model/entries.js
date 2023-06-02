@@ -1,5 +1,7 @@
 const db = require('../database/db.js');
 
+module.exports = { getEntries, createEntry, deleteEntry };
+
 // get entry from db
 const select_entries = db.prepare(/*sql*/ `
   SELECT
@@ -34,5 +36,3 @@ const delete_entry = db.prepare(/*sql*/ `
 function deleteEntry(entries_id) {
   delete_entry.run({ entries_id });
 }
-
-module.exports = { getEntries, createEntry, deleteEntry };
