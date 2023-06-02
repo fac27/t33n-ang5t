@@ -11,7 +11,7 @@ function entriesPage(entries, userId, userName) {
           <span class="entry-post__header${
             userId === entry.user_id ? `--user-name` : `--anonymous`
           }">
-            ${userId === entry.user_id ? `<i>@${userName}</i>` : '@anonymous'}
+            ${userId === entry.user_id ? userName : 'anonymous'}
           </span>
         </p>
         <form action='/entries/delete/${entry.id}' method='post'>

@@ -41,3 +41,9 @@ As a user, I want to...
 ## Wireframes
 
 [figma](https://www.figma.com/file/ghkJFnIZC3NPK1788j7HK9/Untitled?type=design&node-id=0%3A1&t=GkywJHyUM72xRNx8-1)
+
+## .env 
+
+DB_FILE="./db.sqlite"
+COOKIE_SECRET="mwOkzEhuE6D520EZNyD3kGYl"
+
